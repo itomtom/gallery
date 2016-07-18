@@ -1,0 +1,120 @@
+.flip-hor {
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: translate(0, -50%) scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";
+}
+
+.app-section {
+	height: 50%;
+	width: 100%; 
+}
+
+.app-section .big {
+	height: 90%;
+}
+
+.app-section .small {
+	height: 10%;
+}
+
+.thumbnail {
+	width: 20%;
+	height: 33%;
+	display: inline-block;
+	text-align: center;
+	padding: 5px;
+}
+
+.thumbnail img {
+	cursor:pointer;
+	height: 100%; 
+}
+
+.left-arrow {
+	height: 100%; 
+	float: left;
+	margin-left: 10px;
+}
+
+.left-arrow a {
+ 	top: 50%;
+}
+
+.right-arrow {
+	height: 100%; 
+	float: right;
+	margin-right: 10px;
+}
+
+.right-arrow a {
+ 	top: 50%;
+ 	transform: translate(0, -50%);
+}
+
+.display-img {
+	padding: 5px;
+	max-width: 75%;
+}
+
+.waves-effect.disabled {
+    pointer-events: none;
+}
+
+.center-vertically {
+	display: flex !important;
+	justify-content: center;
+	flex-direction: column;
+	height: 100%;
+}
+
+/*
+	Overriding Materialize CSS to fit onto the page
+*/
+
+nav { 
+	height: 100%;
+	line-height: 100%;
+} 
+
+nav form {
+	height: 100%;
+	line-height: 100%;
+}
+
+nav a.brand-logo {
+	width: 50%;
+	line-height: 100%;
+	padding-left: 5px;
+}
+
+nav form.search-bar {
+	width: 50%;
+	float: right;
+}
+
+nav form * {
+	height: 100%;
+	line-height: 100%;
+}
+
+nav i.material-icons { 
+	height: 100%;
+	line-height: 100%;
+} 
+
+.pagination { 
+	margin: 0;
+	text-align: center;
+} 
+
+.pagination li {
+	line-height: 100%;
+	font-size: 100%
+}
+
+.pagination i.material-icons {
+	line-height: 100%;
+}

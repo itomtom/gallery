@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+	<head>	
+		<!-- jQuery -->
+		<script type="text/javascript" src="../library/jquery-2.1.1.min.js"></script>
+		
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" type="text/css" href="../css/materialize.min.css">
+
+		<!-- Compiled and minified JavaScript -->
+		<script type="text/javascript" src="../library/materialize.min.js"></script>
+
+		<!--Import Google Icon Font-->
+		<link rel="stylesheet" type="text/css" href="../css/materialize.icon.css">
+		
+		<!-- Angular -->
+		<script type="text/javascript" src="../library/angular.min.js"></script>
+
+		<!-- Main App JavaScript File -->
+		<script type="text/javascript" src="../js/app.js"></script>
+		<script type="text/javascript" src="../js/service.js"></script>
+		<script type="text/javascript" src="../js/helper.js"></script>
+
+		<!-- Underscore -->
+		<script type="text/javascript" src="../library/underscore-min.js"></script>
+		
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+	</head>
+	<body style="height: 100%" ng-app="MyFlickrApp" ng-controller="ImageController as imgCtrl">
+		<div class="app-section">
+			<div class="small">
+				<nav>
+					<div class="nav-wrapper">
+					  <a href="#" onclick="window.location.reload(true);" class="center-vertically brand-logo">My Gallery</a>
+					  <form class="search-bar" ng-submit="imgCtrl.submitSearch()">
+					    <div class="input-field">
+					      <input id="search" type="search" ng-model="imgCtrl.searchText">
+					      <label for="search"><i class="center-vertically material-icons">search</i></label>
+					      <i class="center-vertically material-icons" ng-click="imgCtrl.clearSearch()">close</i>
+					    </div>
+					  </form>
+					</div>
+				</nav>
+			</div>
+			<div class="big" style="text-align: center; background-color: teal;">
+				<div class="left-arrow">
+					<a ng-class="{'disabled':imgCtrl.currentPage===1&&imgCtrl.index===0}" ng-click="imgCtrl.changeImage(imgCtrl.index-1)" class="flip-hor btn-floating waves-effect waves-light"><i class="material-icons">play_arrow</i></a>
+				</div>
+				<img class="display-img" height="100%" ng-src="{{imgCtrl.photos[imgCtrl.index].src}}">
+				<div class="right-arrow">
+					<a ng-class="{'disabled':imgCtrl.currentPage===imgCtrl.pages[imgCtrl.pages.length-1]&&imgCtrl.index===imgCtrl.photos.length-1}" ng-click="imgCtrl.changeImage(imgCtrl.index+1)" class="btn-floating waves-effect waves-light"><i class="material-icons">play_arrow</i></a>
+				</div>
+			</div>
+		</div>
+		<div class="app-section">
+			<div class="big">
+				<div class="thumbnail" ng-repeat="photo in imgCtrl.photos">
+					<img ng-src="{{photo.thumbSrc}}" style="max-height: 100%" ng-click="imgCtrl.index=$index">
+				</div>
+			</div>
+			<div class="small">
+				<ul class="pagination">
+					<li ng-class="{'disabled':imgCtrl.currentPage===1}" class="waves-effect" ng-click="imgCtrl.currentPage=imgCtrl.currentPage-1;imgCtrl.getImages()">
+						<a href="#!"><i class="material-icons">chevron_left</i></a>
+					</li>
+					<li ng-class="{'disabled':page==='\u2026','active':page===imgCtrl.currentPage}" ng-click="imgCtrl.currentPage=page;imgCtrl.getImages()" class="waves-effect" ng-repeat="page in imgCtrl.pages track by $index">
+						<a href="#!">{{page}}</a>
+					</li>
+					<li ng-class="{'disabled':imgCtrl.currentPage===imgCtrl.pages[imgCtrl.pages.length-1]}" class="waves-effect" ng-click="imgCtrl.currentPage=imgCtrl.currentPage+1;imgCtrl.getImages()">
+						<a href="#!"><i class="material-icons">chevron_right</i></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="loader" class="modal" style="text-align: center;">	
+			<div class="modal-content">
+				<h4>Loading ...</h4>
+				<div class="preloader-wrapper big active">
+					<div class="spinner-layer spinner-blue-only">
+					  <div class="circle-clipper left">
+					    <div class="circle"></div>
+					  </div><div class="gap-patch">
+					    <div class="circle"></div>
+					  </div><div class="circle-clipper right">
+					    <div class="circle"></div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
